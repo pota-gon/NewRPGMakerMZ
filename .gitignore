@@ -1,0 +1,24 @@
+# 公開しないプラグイン
+plugins/Base/PotBase.js
+plugins/Battle/LoseExp.js
+plugins/Battle/Card
+plugins/Battle/Enemy/EnemyMpCostZero.js
+plugins/Battle/Enemy/ExportEnemy.js
+plugins/Battle/Menu/SkillFace.js
+plugins/Battle/Troop/TroopRewards.js
+plugins/Data/Skill/CriticalSkill.js
+plugins/Data/Skill/GuardSkill.js
+plugins/Data/Skill/SummonBattler.js
+plugins/Data/Skill/TpRecover.js
+plugins/Data/State
+plugins/Other/HtmlSupport.js
+plugins/Other/Name/NameSwitch.js
+plugins/Prod/Map/EncountAirShip.js
+plugins/Prod/Window
+plugins/System/ChangeSplashWait.js
+plugins/System/Color.js
+plugins/System/FixSetupForNewGame.js
+plugins/System/FixSetupStartingMembers.js
+plugins/System/LevelCode.js
+plugins/System/MoveSpeed.js
+plugins/System/Shop/NoSale.js
