@@ -1,15 +1,13 @@
 /*:
 @plugindesc
-スキル名参照制御文字 Ver0.0.0(2024/11/25)
+アイテム名参照制御文字 Ver1.2.5(2023/7/9)
 
-@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/main/plugins/Other/Name/ExSkill.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/main/plugins/Other/Ex/ExItem.js
 @target MZ
 @author ポテトードラゴン
 
 ・アップデート情報
-* Ver0.0.1: 
-- 
-* Ver0.0.0: 作成開始
+* Ver1.2.5: ヘルプ更新
 
 Copyright (c) 2025 ポテトードラゴン
 Released under the MIT License.
@@ -17,13 +15,14 @@ https://opensource.org/licenses/mit-license.php
 
 @help
 ## 概要
-スキル名を参照する制御文字 \SS を追加します。
+アイテム名を参照する制御文字 \II を追加します。
 
 ## 使い方
-\SS[ファイア] のようにスキル名を記載すると、  
-[アイコン]ファイア のようにアイコンとスキル名が表示されるようになります。
- 
-同じスキル名がある場合は、最初に見つけたスキル名が表示されます。
+\II[ポーション] のようにアイテム名を記載すると、  
+[アイコン]ポーション のようにアイコンとアイテム名が表示されるようになります。
+
+アイテム名には、武器や防具も指定することが出来ます。  
+同じアイテム名がある場合は、最初に見つけたアイテム名が表示されます。
 */
 (() => {
     'use strict';
@@ -43,8 +42,14 @@ https://opensource.org/licenses/mit-license.php
         }
         return val;
     }
-    function Potadra_nameSearch(data, name, column = "id", search_column = "name", val = "", initial = 1) {
-        return Potadra_search(data, name, column, search_column, val, initial);
+    function Potadra_itemSearch(name, column = false, search_column = "name", val = false, initial = 1) {
+        const item = Potadra_search($dataItems, name, column, search_column, val, initial);
+        if (item) return item;
+        const weapon = Potadra_search($dataWeapons, name, column, search_column, val, initial);
+        if (weapon) return weapon;
+        const armor = Potadra_search($dataArmors, name, column, search_column, val, initial);
+        if (armor) return armor;
+        return false;
     }
 
     /**
@@ -58,8 +63,8 @@ https://opensource.org/licenses/mit-license.php
     const _Window_Base_convertEscapeCharacters = Window_Base.prototype.convertEscapeCharacters;
     Window_Base.prototype.convertEscapeCharacters = function(text) {
         let tmp_text = _Window_Base_convertEscapeCharacters.apply(this, arguments);
-        tmp_text = tmp_text.replace(/\x1bSS\[(.+?)\](.*)/gi, (_, p1, p2) =>
-            "\x1bI[" + Potadra_nameSearch($dataSkills, p1, 'iconIndex') + "]" + p1 + p2
+        tmp_text = tmp_text.replace(/\x1bII\[(.+?)\](.*)/gi, (_, p1, p2) =>
+            "\x1bI[" + Potadra_itemSearch(p1, 'iconIndex') + "]" + p1 + p2
         );
         return tmp_text;
     };

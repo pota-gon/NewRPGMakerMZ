@@ -1,6 +1,6 @@
 /*:
 @plugindesc
-ワールド自動生成 Ver0.6.3(2024/11/26)
+ワールド自動生成 Ver0.6.4(2024/12/12)
 
 @url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/main/plugins/Prod/Map/GenerateWorld.js
 @orderAfter wasdKeyMZ
@@ -9,6 +9,10 @@
 @author ポテトードラゴン
 
 ・アップデート情報
+* Ver0.6.4
+- 乱数の初期設定でメルセンヌ・ツイスタを使用するように修正
+- 乱数配列のシャッフルを簡易的な方式に変更
+- プラグインパラメータから乱数の種別を選べる機能追加
 * Ver0.6.3
 - シード周りの不具合解消
 - シード値ごとの配列作成処理を高速化
@@ -137,6 +141,14 @@ https://github.com/pota-gon/GenerateWorld
 セーブデータに保持するか
 @on 保持する
 @off 保持しない
+@default true
+
+@param RandomNumber
+@type boolean
+@text 乱数
+@desc 使用する乱数の種類
+@on メルセンヌ・ツイスタ
+@off Xorshift
 @default true
 
 @param SeedVariable
@@ -819,11 +831,11 @@ https://github.com/pota-gon/GenerateWorld
         let endTime = Date.now(); // 終了時間
         console.debug(message + '時間: ' + (endTime - time) + 'ms'); // 何ミリ秒かかったかを表示する
     }
-    class PotadraXorShift {
-        constructor(w, h, t, seed = 1) {
-            this.w = w;
-            this.h = h;
-            this.t = t;
+    class PotadraXorshift {
+        constructor(seed = 1) {
+            this.w = 816;
+            this.h = 624;
+            this.t = 48;
             this.s = seed;
         }
         xorshift(min = 0, max = 254) {
@@ -833,6 +845,52 @@ https://github.com/pota-gon/GenerateWorld
             this.t = this.s;
             this.s = (this.s ^ (this.s >>> 19)) ^ (t ^ (t >>> 8)); 
             return min + (Math.abs(this.s) % (max + 1 - min));
+        }
+    }
+    class PotadraMersenneTwister {
+        constructor(seed) {
+            this.N = 624;
+            this.M = 397;
+            this.MATRIX_A = 0x9908b0df; // constant vector a
+            this.UPPER_MASK = 0x80000000; // most significant w-r bits
+            this.LOWER_MASK = 0x7fffffff; // least significant r bits
+            this.mt = new Array(this.N); // the array for the state vector
+            this.mti = this.N + 1; // mti==N+1 means mt[N] is not initialized
+            this.init_genrand(seed || new Date().getTime());
+        }
+        init_genrand(s) {
+            this.mt[0] = s >>> 0;
+            for (this.mti = 1; this.mti < this.N; this.mti++) {
+                const x = this.mt[this.mti - 1] ^ (this.mt[this.mti - 1] >>> 30);
+                this.mt[this.mti] = (((((x & 0xffff0000) >>> 16) * 1812433253) << 16) + (x & 0x0000ffff) * 1812433253) + this.mti;
+                this.mt[this.mti] >>>= 0;
+            }
+        }
+        genrand() {
+            let y;
+            const mag01 = [0x0, this.MATRIX_A];
+            if (this.mti >= this.N) {
+                let kk;
+                if (this.mti === this.N + 1) this.init_genrand(5489); // default seed
+                for (kk = 0; kk < this.N - this.M; kk++) {
+                    y = (this.mt[kk] & this.UPPER_MASK) | (this.mt[kk + 1] & this.LOWER_MASK);
+                    this.mt[kk] = this.mt[kk + this.M] ^ (y >>> 1) ^ mag01[y & 0x1];
+                }
+                for (; kk < this.N - 1; kk++) {
+                    y = (this.mt[kk] & this.UPPER_MASK) | (this.mt[kk + 1] & this.LOWER_MASK);
+                    this.mt[kk] = this.mt[kk + (this.M - this.N)] ^ (y >>> 1) ^ mag01[y & 0x1];
+                }
+                y = (this.mt[this.N - 1] & this.UPPER_MASK) | (this.mt[0] & this.LOWER_MASK);
+                this.mt[this.N - 1] = this.mt[this.M - 1] ^ (y >>> 1) ^ mag01[y & 0x1];
+                this.mti = 0;
+            }
+            y = this.mt[this.mti++];
+            y ^= (y >>> 11);
+            y ^= (y << 7) & 0x9d2c5680;
+            y ^= (y << 15) & 0xefc60000;
+            y ^= (y >>> 18);
+            const value = y >>> 0;
+            return Math.floor(value / 4294967296 * 256);
         }
     }
     function Potadra_checkSwitch(switch_no, bool = true) {
@@ -1381,6 +1439,7 @@ https://github.com/pota-gon/GenerateWorld
 
     // 各パラメータ用定数
     const RetentionSaveData = Potadra_convertBool(params.RetentionSaveData);
+    const RandomNumber      = Potadra_convertBool(params.RandomNumber);
     const SeedVariable      = Number(params.SeedVariable) || 0;
     const TileRegion        = Number(params.TileRegion) || 1;
     const TwoChoiceRegion   = Number(params.TwoChoiceRegion || 2);
@@ -1592,7 +1651,11 @@ https://github.com/pota-gon/GenerateWorld
 
         // 乱数設定(Xorshift)
         if ($gameTemp._seed !== s) {
-            $gameTemp._seedArray = shuffle(s);
+            if (RandomNumber) {
+                $gameTemp._seedArray = shuffle(s);
+            } else {
+                $gameTemp._seedArray = xor_shuffle(s);
+            }
             $gameTemp._seed = s;
         }
 
@@ -1644,25 +1707,20 @@ https://github.com/pota-gon/GenerateWorld
         return s;
     }
 
-    // 0-255のシード配列をシャッフル
+    // 0-255のランダムな値を配列に追加
     function shuffle(s) {
-        const random = new PotadraXorShift($dataSystem.advanced.screenWidth, $dataSystem.advanced.screenHeight, $dataSystem.tileSize, s);
-        let array = [];
-        let start = 0;
-        for(let i = 0; i < 256; i++) {
-            let s = random.xorshift();
-            let r = s % 256; // 0 - 255 の値
-            if (array.includes(r)) {
-                for(let j = start; j < 256; j++) {
-                    if (!array.includes(j)) {
-                        array.push(r);
-                        start = r;
-                        break;
-                    }
-                }
-            } else {
-                array.push(r);
-            }
+        const random = new PotadraMersenneTwister(s);
+        const array = [];
+        for (let i = 0; i < 256; i++) {
+            array.push(random.genrand());
+        }
+        return array;
+    }
+    function xor_shuffle(s) {;
+        const random = new PotadraXorshift(s);
+        const array = [];
+        for (let i = 0; i < 256; i++) {
+            array.push(random.xorshift() % 256); // 0 - 255 の値
         }
         return array;
     }

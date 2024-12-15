@@ -1,6 +1,6 @@
 /*:
 @plugindesc
-スキルコスト Ver0.7.6(2024/6/23)
+スキルコスト Ver0.7.6(2025/1/1)
 
 @url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/main/plugins/Data/Skill/SkillCost.js
 @target MZ

@@ -96,7 +96,7 @@ https://opensource.org/licenses/mit-license.php
                     // 現在のページの歩行グラフィックと
                     // データベースのアクターの歩行グラフィックが一致した場合
                     // アクターの名前を名前として表示
-                    for(let i = 1; i < $dataActors.length; i++) {
+                    for (let i = 1; i < $dataActors.length; i++) {
                         const actor = $dataActors[i];
                         if(actor.characterName == params[0] && actor.characterIndex == params[1]) {
                             $gameMessage.setSpeakerName(actor.name);

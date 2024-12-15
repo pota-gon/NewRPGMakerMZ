@@ -1,8 +1,8 @@
 /*:
 @plugindesc
-タイトル処理 Ver1.4.1(2023/7/9)
+タイトル処理 Ver1.4.1(2025/1/1)
 
-@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/main/plugins/System/Title.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/main/plugins/Prod/Title/Title.js
 @target MZ
 @author ポテトードラゴン
 
@@ -47,6 +47,8 @@ https://opensource.org/licenses/mit-license.php
 @desc サブタイトルの表示内容
 空文字でサブタイトルは表示しません
 
+#### バージョン表示(Version)
+
 @param Version
 @type boolean
 @text バージョン表示
@@ -55,11 +57,15 @@ https://opensource.org/licenses/mit-license.php
 @off 表示しない
 @default true
 
+##### バージョン名(VersionName)
+
     @param VersionName
     @parent Version
     @text バージョン名
     @desc この文字列以降のタイトルをバージョンとして扱います
     @default ver
+
+##### バージョン分割位置(VersionPos)
 
     @param VersionPos
     @parent Version
@@ -69,6 +75,8 @@ https://opensource.org/licenses/mit-license.php
     どこをバージョンとして使うかの設定
     @default 1
 
+##### バージョンID表示(VersionId)
+
     @param VersionId
     @parent Version
     @type boolean
@@ -77,6 +85,8 @@ https://opensource.org/licenses/mit-license.php
     @on 表示する
     @off 表示しない
     @default false
+
+##### バージョンID区切り文字(VersionIdName)
 
     @param VersionIdName
     @parent Version

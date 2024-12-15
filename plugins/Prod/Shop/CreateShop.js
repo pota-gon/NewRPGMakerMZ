@@ -2,7 +2,7 @@
 @plugindesc
 合成屋 Ver0.10.9(2024/9/22)
 
-@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/main/plugins/Other/Name/CreateShop.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/main/plugins/Prod/Shop/CreateShop.js
 @target MZ
 @author ポテトードラゴン
 
