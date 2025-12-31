@@ -1,0 +1,7 @@
+# 公開しないプラグイン
+plugins/BASE/Core/patch
+plugins/BASE/Other/PotBase.js
+plugins/GAME/BareHandsAnime.js
+plugins/GAME/Battle/ui/HideBattleSkillTypes.js
+plugins/GAME/Ui/ChangeChara.js
+plugins/GAME/Ui/Story.js
