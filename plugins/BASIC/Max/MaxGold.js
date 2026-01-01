@@ -2,7 +2,7 @@
 @plugindesc
 所持金の最大数変更 Ver1.3.4(2022/4/1)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/BASIC/Max/MaxGold.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/BASIC/Max/MaxGold.js
 @target MZ
 @author ポテトードラゴン
 

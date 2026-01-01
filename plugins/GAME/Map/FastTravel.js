@@ -2,7 +2,7 @@
 @plugindesc
 ファストトラベル Ver1.0.5(2025/12/28)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/GAME/Map/FastTravel.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/GAME/Map/FastTravel.js
 @target MZ
 @author ポテトードラゴン
 

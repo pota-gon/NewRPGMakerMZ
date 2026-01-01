@@ -2,7 +2,7 @@
 @plugindesc
 転生アイテム Ver1.2.1(2023/12/9)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/GAME/Item/ReincarnationItem.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/GAME/Item/ReincarnationItem.js
 @target MZ
 @author ポテトードラゴン
 

@@ -2,7 +2,7 @@
 @plugindesc
 移動速度変更 Ver1.0.0(2025/1/18)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/BASIC/MoveSpeed.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/BASIC/MoveSpeed.js
 @target MZ
 @author ポテトードラゴン
 

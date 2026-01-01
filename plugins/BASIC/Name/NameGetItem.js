@@ -2,7 +2,7 @@
 @plugindesc
 名前アイテム入手 Ver2.0.3(2025/10/2)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/BASIC/Name/NameGetItem.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/BASIC/Name/NameGetItem.js
 @target MZ
 @author ポテトードラゴン
 

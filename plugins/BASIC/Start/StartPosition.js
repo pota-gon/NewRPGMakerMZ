@@ -2,7 +2,7 @@
 @plugindesc
 ゲーム開始時のプレイヤー位置を固定 Ver1.1.1(2025/5/29)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/BASIC/Start/StartPosition.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/BASIC/Start/StartPosition.js
 @target MZ
 @author ポテトードラゴン
 

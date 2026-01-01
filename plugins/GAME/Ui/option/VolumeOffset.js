@@ -2,7 +2,7 @@
 @plugindesc
 オプションボリューム切り替え範囲 Ver1.0.5(2025/1/18)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/GAME/Ui/option/VolumeOffset.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/GAME/Ui/option/VolumeOffset.js
 @target MZ
 @author ポテトードラゴン
 

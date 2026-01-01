@@ -2,7 +2,7 @@
 @plugindesc
 隠しアイテム表示 Ver1.0.6(2024/11/20)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/GAME/Item/ShowSecret.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/GAME/Item/ShowSecret.js
 @target MZ
 @author ポテトードラゴン
 

@@ -2,7 +2,7 @@
 @plugindesc
 敵キャラMP・TP枯渇行動 Ver1.0.0(2025/10/4)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/GAME/Battle/card/PlusAction.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/GAME/Battle/card/PlusAction.js
 @target MZ
 @author ポテトードラゴン
 

@@ -2,7 +2,7 @@
 @plugindesc
 戦闘中ポイント増加 Ver1.0.1(2025/12/27)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/GAME/Battle/card/IncreasePointBattle.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/GAME/Battle/card/IncreasePointBattle.js
 @target MZ
 @author ポテトードラゴン
 

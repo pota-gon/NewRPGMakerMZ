@@ -2,7 +2,7 @@
 @plugindesc
 装備解放 Ver1.0.3(2025/5/29)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/GAME/Equip/ReleaseEquip.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/GAME/Equip/ReleaseEquip.js
 @target MZ
 @author ポテトードラゴン
 

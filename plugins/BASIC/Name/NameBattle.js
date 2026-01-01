@@ -2,7 +2,7 @@
 @plugindesc
 名前戦闘呼び出し Ver1.0.0(2025/10/4)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/BASIC/Name/NameBattle.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/BASIC/Name/NameBattle.js
 @target MZ
 @author ポテトードラゴン
 

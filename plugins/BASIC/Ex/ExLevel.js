@@ -2,7 +2,7 @@
 @plugindesc
 Lv参照制御文字 Ver1.0.1(2025/7/22)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/BASIC/Ex/ExLevel.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/BASIC/Ex/ExLevel.js
 @target MZ
 @author ポテトードラゴン
 

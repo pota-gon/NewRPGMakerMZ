@@ -2,7 +2,7 @@
 @plugindesc
 装備スロット変更 Ver1.4.7(2025/7/22)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/GAME/Equip/ChangeSlot.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/GAME/Equip/ChangeSlot.js
 @target MZ
 @author ポテトードラゴン
 

@@ -2,7 +2,7 @@
 @plugindesc
 ピースフル Ver1.0.2(2023/7/3)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/GAME/Ui/option/Peaceful.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/GAME/Ui/option/Peaceful.js
 @target MZ
 @author ポテトードラゴン
 

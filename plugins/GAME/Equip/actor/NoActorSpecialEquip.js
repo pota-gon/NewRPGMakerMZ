@@ -2,7 +2,7 @@
 @plugindesc
 アクター装備禁止 Ver1.0.0(2025/10/4)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/GAME/Equip/actor/NoActorSpecialEquip.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/GAME/Equip/actor/NoActorSpecialEquip.js
 @target MZ
 @author ポテトードラゴン
 

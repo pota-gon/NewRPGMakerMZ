@@ -2,7 +2,7 @@
 @plugindesc
 職業装備禁止 Ver1.0.0(2025/10/4)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/GAME/Equip/class/NoClassSpecialEquip.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/GAME/Equip/class/NoClassSpecialEquip.js
 @target MZ
 @author ポテトードラゴン
 

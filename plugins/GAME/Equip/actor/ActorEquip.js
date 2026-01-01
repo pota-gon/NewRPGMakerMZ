@@ -2,7 +2,7 @@
 @plugindesc
 アクター装備 Ver1.0.4(2025/7/22)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/GAME/Equip/actor/ActorEquip.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/GAME/Equip/actor/ActorEquip.js
 @target MZ
 @author ポテトードラゴン
 

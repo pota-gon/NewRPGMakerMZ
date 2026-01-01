@@ -2,7 +2,7 @@
 @plugindesc
 マップ戦闘BGM Ver1.2.7(2023/7/3)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/GAME/Bgm/MapBgm.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/GAME/Bgm/MapBgm.js
 @target MZ
 @author ポテトードラゴン
 

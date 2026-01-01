@@ -2,7 +2,7 @@
 @plugindesc
 オートセーブ上書き許可 Ver1.0.0(2023/4/25)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/BASIC/Save/OverWriteAutoSave.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/BASIC/Save/OverWriteAutoSave.js
 @target MZ
 @author ポテトードラゴン
 

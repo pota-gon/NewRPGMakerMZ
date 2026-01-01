@@ -2,7 +2,7 @@
 @plugindesc
 ワールド自動生成 Ver0.6.7(2025/10/19)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/GAME/Map/GenerateWorld.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/GAME/Map/GenerateWorld.js
 @orderAfter wasdKeyMZ
 @orderAfter GridScrollMap
 @target MZ

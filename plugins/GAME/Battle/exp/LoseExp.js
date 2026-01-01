@@ -2,7 +2,7 @@
 @plugindesc
 敗北経験値 Ver1.0.1(2025/7/22)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/GAME/Battle/exp/LoseExp.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/GAME/Battle/exp/LoseExp.js
 @target MZ
 @author ポテトードラゴン
 

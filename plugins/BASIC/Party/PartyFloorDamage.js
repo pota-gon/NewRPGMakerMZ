@@ -2,7 +2,7 @@
 @plugindesc
 パーティー床ダメージ率 Ver1.0.3(2025/1/18)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/BASIC/Party/PartyFloorDamage.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/BASIC/Party/PartyFloorDamage.js
 @target MZ
 @author ポテトードラゴン
 

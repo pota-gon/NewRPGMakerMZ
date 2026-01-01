@@ -2,7 +2,7 @@
 @plugindesc
 ゲーム開始時の初期パーティを固定 Ver1.0.0(2025/10/4)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/BASIC/Start/StartMembers.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/BASIC/Start/StartMembers.js
 @target MZ
 @author ポテトードラゴン
 

@@ -2,7 +2,7 @@
 @plugindesc
 トグルスイッチ Ver1.2.5(2022/12/2)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/BASIC/Switch/ToggleSwitch.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/BASIC/Switch/ToggleSwitch.js
 @target MZ
 @author ポテトードラゴン
 

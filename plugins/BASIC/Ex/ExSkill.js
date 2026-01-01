@@ -2,7 +2,7 @@
 @plugindesc
 スキル名参照制御文字 Ver1.0.1(2025/10/4)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/BASIC/Ex/ExSkill.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/BASIC/Ex/ExSkill.js
 @target MZ
 @author ポテトードラゴン
 

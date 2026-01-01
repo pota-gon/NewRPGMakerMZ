@@ -2,7 +2,7 @@
 @plugindesc
 ピクチャの最大数変更 Ver1.0.2(2025/2/17)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/BASIC/Max/MaxPicture.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/BASIC/Max/MaxPicture.js
 @target MZ
 @author ポテトードラゴン
 

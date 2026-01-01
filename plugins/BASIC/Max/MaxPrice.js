@@ -2,7 +2,7 @@
 @plugindesc
 価格の最大値変更 Ver1.1.6(2024/6/12)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/BASIC/Max/MaxPrice.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/BASIC/Max/MaxPrice.js
 @target MZ
 @author ポテトードラゴン
 

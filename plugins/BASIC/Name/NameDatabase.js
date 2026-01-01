@@ -2,7 +2,7 @@
 @plugindesc
 名前データベース Ver1.0.2(2025/12/31)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/BASIC/Name/NameDatabase.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/BASIC/Name/NameDatabase.js
 @target MZ
 @author ポテトードラゴン
 

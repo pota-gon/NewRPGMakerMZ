@@ -2,7 +2,7 @@
 @plugindesc
 ニフラム Ver1.0.0(2022/4/1)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/GAME/Skill/Erase.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/GAME/Skill/Erase.js
 @target MZ
 @author ポテトードラゴン
 

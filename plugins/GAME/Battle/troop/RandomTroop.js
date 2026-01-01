@@ -2,7 +2,7 @@
 @plugindesc
 敵グループランダム決定 Ver1.5.4(2025/12/29)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/GAME/Battle/troop/RandomTroop.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/GAME/Battle/troop/RandomTroop.js
 @target MZ
 @author ポテトードラゴン
 

@@ -2,7 +2,7 @@
 @plugindesc
 アイテム名参照制御文字 Ver1.2.6(2025/10/4)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/BASIC/Ex/ExItem.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/BASIC/Ex/ExItem.js
 @target MZ
 @author ポテトードラゴン
 

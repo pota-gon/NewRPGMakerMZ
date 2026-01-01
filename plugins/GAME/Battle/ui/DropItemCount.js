@@ -2,7 +2,7 @@
 @plugindesc
 ドロップアイテム個数表示 Ver1.3.6(2023/7/12)
 
-@url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/GAME/Battle/ui/DropItemCount.js
+@url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/GAME/Battle/ui/DropItemCount.js
 @target MZ
 @author ポテトードラゴン
 
