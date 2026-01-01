@@ -1,12 +1,13 @@
 /*:
 @plugindesc
-名前データベース Ver1.0.1(2025/12/17)
+名前データベース Ver1.0.2(2025/12/31)
 
 @url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/BASIC/Name/NameDatabase.js
 @target MZ
 @author ポテトードラゴン
 
 ・アップデート情報
+* Ver1.0.2: ステート有効度と攻撃時ステートが正しく動いていないバグ修正
 * Ver1.0.1: 習得するスキル（アクター）を追加
 * Ver1.0.0: 安定したのでバージョンを 1.0.0 に変更
 
@@ -343,7 +344,7 @@ https://opensource.org/license/mit
         }
         return battler_ids.concat(class_ids).concat(equip_ids).concat(state_ids);
     }
-    function Potadra_checkMetaData(battler, tag, data) {
+    function Potadra_checkMetaData(battler, tag) {
         let values = [];
         const b = battler.isActor() ? battler.actor() : battler.enemy();
         let tmp_values = Potadra_metaData(b.meta[tag]);
@@ -351,12 +352,14 @@ https://opensource.org/license/mit
         if (battler.isActor()) {
             tmp_values = Potadra_metaData(battler.currentClass().meta[tag]);
             if (tmp_values) values = values.concat(tmp_values);
-            tmp_values = battler.equips()
+            battler.equips()
                 .filter(equip => equip)
                 .flatMap(equip => {
-                    return Potadra_ids(Potadra_metaData(equip.meta[tag]), data);
+                    tmp_values = Potadra_metaData(equip.meta[tag]);
+                    if (tmp_values) {
+                        values = values.concat(tmp_values);
+                    }
                 });
-            if (tmp_values) values = values.concat(tmp_values);
         }
         for (const state of battler.states()) {
             tmp_values = Potadra_metaData(state.meta[tag]);
@@ -521,12 +524,12 @@ https://opensource.org/license/mit
          * @returns {} 
          */
         Game_BattlerBase.prototype.stateRate = function(stateId) {
-            const state_data = Potadra_checkMetaData(this, StateRateMetaName, $dataStates);
+            const state_data = Potadra_checkMetaData(this, StateRateMetaName);
             const traits = [];
             if (state_data) {
                 for (const state_str of state_data) {
                     const state_datum = state_str.split(",");
-                    const state_name  = state_datum[0];
+                    const state_name  = state_datum[0].trim();
                     const state_id    = Potadra_nameSearch($dataStates, state_name);
                     if (state_id === stateId) {
                         const state_value = Number(state_datum[1]) / 100;
@@ -563,7 +566,16 @@ https://opensource.org/license/mit
          * @returns {} 
          */
         Game_BattlerBase.prototype.attackStates = function() {
-            const state_ids = Potadra_checkMetaIds(this, AttackStatesMetaName, $dataStates);
+            const state_data = Potadra_checkMetaData(this, AttackStatesMetaName);
+            const state_ids = [];
+            if (state_data) {
+                for (const state_str of state_data) {
+                    const state_datum = state_str.split(",");
+                    const state_name  = state_datum[0].trim();
+                    const state_id    = Potadra_nameSearch($dataStates, state_name);
+                    if (state_id) state_ids.push(state_id);
+                }
+            }
             return this.traitsSet(Game_BattlerBase.TRAIT_ATTACK_STATE).concat(state_ids);
         };
 
@@ -574,17 +586,17 @@ https://opensource.org/license/mit
          * @returns {} 
          */
         Game_BattlerBase.prototype.attackStatesRate = function(stateId) {
-            const state_data = Potadra_checkMetaData(this, AttackStatesMetaName, $dataStates);
+            const state_data = Potadra_checkMetaData(this, AttackStatesMetaName);
             const traits = [];
             if (state_data) {
                 for (const state_str of state_data) {
                     const state_datum = state_str.split(",");
-                    const state_name  = state_datum[0];
+                    const state_name  = state_datum[0].trim();
                     const state_id    = Potadra_nameSearch($dataStates, state_name);
                     if (state_id === stateId) {
                         const state_value = Number(state_datum[1]) / 100;
                         let trait = {};
-                        trait.code   = Game_BattlerBase.TRAIT_STATE_RATE;
+                        trait.code   = Game_BattlerBase.TRAIT_ATTACK_STATE;
                         trait.dataId = stateId;
                         trait.value  = state_value;
                         traits.push(trait);

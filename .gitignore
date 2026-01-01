@@ -1,6 +1,7 @@
 # 公開しないプラグイン
 plugins/BASE/Core/patch
 plugins/BASE/Other/PotBase.js
+plugins/BASIC/Ex/ExStateIcon.js
 plugins/GAME/BareHandsAnime.js
 plugins/GAME/Battle/ui/HideBattleSkillTypes.js
 plugins/GAME/Ui/ChangeChara.js

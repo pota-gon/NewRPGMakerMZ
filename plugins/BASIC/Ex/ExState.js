@@ -1,12 +1,13 @@
 /*:
 @plugindesc
-ステート名参照制御文字 Ver1.0.1(2025/10/4)
+ステート名参照制御文字 Ver1.0.2(2026/1/1)
 
 @url https://raw.githubusercontent.com/pota-gon/NewRPGMakerMZ/refs/heads/main/plugins/BASIC/Ex/ExState.js
 @target MZ
 @author ポテトードラゴン
 
 ・アップデート情報
+* Ver1.0.2: ヘルプ修正
 * Ver1.0.1: 2つ以上同時に使用出来ないバグ修正
 * Ver1.0.0: 初期版完成
 
@@ -19,7 +20,7 @@ https://opensource.org/license/mit
 ステート名を参照する制御文字 \SS を追加します
 
 ## 使い方
-\SS[毒] のようにスキル名を記載すると  
+\SS[毒] のようにステート名を記載すると  
 [アイコン]毒 のようにアイコンとステート名が表示されるようになります
 
 同じステート名がある場合は、最初に見つけたステート名が表示されます
