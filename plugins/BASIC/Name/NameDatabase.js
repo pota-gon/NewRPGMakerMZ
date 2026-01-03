@@ -1,12 +1,14 @@
 /*:
 @plugindesc
-名前データベース Ver1.0.2(2025/12/31)
+名前データベース Ver1.0.3(2026/1/3)
 
 @url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/BASIC/Name/NameDatabase.js
+@orderAfter Game_Action_Result
 @target MZ
 @author ポテトードラゴン
 
 ・アップデート情報
+* Ver1.0.3: ステート解除をスキル・アイテム実行前に行うように修正、リファクタリング
 * Ver1.0.2: ステート有効度と攻撃時ステートが正しく動いていないバグ修正
 * Ver1.0.1: 習得するスキル（アクター）を追加
 * Ver1.0.0: 安定したのでバージョンを 1.0.0 に変更
@@ -248,9 +250,6 @@ https://opensource.org/license/mit
     function Potadra_stringArray(data) {
         return data ? JSON.parse(data).map(String) : [];
     }
-    function Potadra_isPlugin(plugin_name) {
-        return PluginManager._scripts.includes(plugin_name);
-    }
     function Potadra_getPluginParams(plugin_name) {
         return Potadra_isPlugin(plugin_name) ? PluginManager.parameters(plugin_name) : false;
     }
@@ -264,6 +263,9 @@ https://opensource.org/license/mit
         } else {
             return true;
         }
+    }
+    function Potadra_isPlugin(plugin_name) {
+        return PluginManager._scripts.includes(plugin_name);
     }
 
 
@@ -397,6 +399,9 @@ https://opensource.org/license/mit
     const RemoveStateMetaName  = String(params.RemoveStateMetaName || 'ステート解除');
     const ActorLearning        = Potadra_convertBool(params.ActorLearning);
     const Learning             = Potadra_convertBool(params.Learning);
+
+    // 他プラグイン連携(プラグインの導入有無)
+    const Game_Action_Result = Potadra_isPlugin('Game_Action_Result');
 
     // アクターの初期装備
     if (ActorEquip && !Utils.isOptionValid("btest")) {
@@ -683,6 +688,60 @@ https://opensource.org/license/mit
 
     // ステート付加(使用効果)
     if (AddState || RemoveState) {
+        function set_code_effects(value, meta, code) {
+            const effects = [];
+
+            if (!value) return effects;
+
+            const state_data = Potadra_metaData(meta);
+            if (state_data) {
+                for (const state_str of state_data) {
+                    const state_datum = state_str.split(",");
+                    const state_name  = state_datum[0];
+                    const state_value = Number(state_datum[1]) / 100;
+
+                    let state_id;
+                    if (code === Game_Action.EFFECT_ADD_STATE && state_name === '通常攻撃') {
+                        state_id = 0;
+                    } else {
+                        state_id = Potadra_nameSearch($dataStates, state_name);
+                    }
+
+                    let effect = set_effect(code, state_id, state_value);
+                    effects.push(effect);
+                }
+            }
+
+            return effects;
+        }
+
+        function set_effect(code, state_id, state_value) {
+            let effect = {};
+            effect.code   = code;
+            effect.dataId = state_id;
+            effect.value1 = state_value;
+            effect.value2 = 0;
+            return effect;
+        }
+
+        // ステート付加(使用効果)
+        function set_add_effects(item, result) {
+            let effects = [];
+            if (result.isHit()) {
+                effects = set_code_effects(AddState, item.meta[AddStateMetaName], Game_Action.EFFECT_ADD_STATE);
+            }
+            return effects;
+        }
+
+        // ステート解除(使用効果)
+        function set_remove_effects(item, result) {
+            let effects = [];
+            if (result.isHit()) {
+                effects = set_code_effects(RemoveState, item.meta[RemoveStateMetaName], Game_Action.EFFECT_REMOVE_STATE);
+            }
+            return effects;
+        }
+
         /**
          * アクション実行
          *
@@ -690,54 +749,27 @@ https://opensource.org/license/mit
          */
         const _Game_Action_apply = Game_Action.prototype.apply;
         Game_Action.prototype.apply = function(target) {
-            _Game_Action_apply.apply(this, arguments);
-            const result = target.result();
-            if (result.isHit()) {
-                const effects = [];
+            this.applyResult(target);
 
-                // ステート付加(使用効果)
-                if (AddState) {
-                    const state_data = Potadra_metaData(this.item().meta[AddStateMetaName]);
-                    if (state_data) {
-                        for (const state_str of state_data) {
-                            const state_datum = state_str.split(",");
-                            const state_name  = state_datum[0];
-                            const state_id    = state_name === '通常攻撃' ? 0 : Potadra_nameSearch($dataStates, state_name);
-                            const state_value = Number(state_datum[1]) / 100;
-
-                            let effect = {};
-                            effect.code   = Game_Action.EFFECT_ADD_STATE;
-                            effect.dataId = state_id;
-                            effect.value1 = state_value;
-                            effect.value2 = 0;
-                            effects.push(effect);
-                        }
-                    }
-                }
-
-                // ステート解除(使用効果)
-                if (RemoveState) {
-                    const state_data = Potadra_metaData(this.item().meta[RemoveStateMetaName]);
-                    if (state_data) {
-                        for (const state_str of state_data) {
-                            const state_datum = state_str.split(",");
-                            const state_name  = state_datum[0];
-                            const state_id    = Potadra_nameSearch($dataStates, state_name);
-                            const state_value = Number(state_datum[1]) / 100;
-
-                            let effect = {};
-                            effect.code   = Game_Action.EFFECT_REMOVE_STATE;
-                            effect.dataId = state_id;
-                            effect.value1 = state_value;
-                            effect.value2 = 0;
-                            effects.push(effect);
-                        }
-                    }
-                }
-
+            // ステート解除(使用効果)
+            if (Game_Action_Result) {
+                let effects = set_remove_effects(this.item(), this._result);
                 for (const effect of effects) {
                     this.applyItemEffect(target, effect);
                 }
+            }
+
+            _Game_Action_apply.call(this, target);
+
+            // ステート解除(使用効果)
+            let remote_effects = [];
+            if (!Game_Action_Result) remote_effects = set_remove_effects(this.item(), this._result);
+
+            // ステート付加(使用効果)
+            add_effects = set_add_effects(this.item(), this._result);
+            effects = remote_effects.concat(add_effects);
+            for (const effect of effects) {
+                this.applyItemEffect(target, effect);
             }
         };
     }
