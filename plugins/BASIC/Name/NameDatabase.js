@@ -752,8 +752,9 @@ https://opensource.org/license/mit
             this.applyResult(target);
 
             // ステート解除(使用効果)
+            let effects = [];
             if (Game_Action_Result) {
-                let effects = set_remove_effects(this.item(), this._result);
+                effects = set_remove_effects(this.item(), this._result);
                 for (const effect of effects) {
                     this.applyItemEffect(target, effect);
                 }
@@ -766,7 +767,7 @@ https://opensource.org/license/mit
             if (!Game_Action_Result) remote_effects = set_remove_effects(this.item(), this._result);
 
             // ステート付加(使用効果)
-            add_effects = set_add_effects(this.item(), this._result);
+            const add_effects = set_add_effects(this.item(), this._result);
             effects = remote_effects.concat(add_effects);
             for (const effect of effects) {
                 this.applyItemEffect(target, effect);
