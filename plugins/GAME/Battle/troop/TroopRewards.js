@@ -1,12 +1,13 @@
 /*:
 @plugindesc
-敵グループ報酬 Ver1.0.0(2025/10/4)
+敵グループ報酬 Ver1.0.1(2026/1/4)
 
 @url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/GAME/Battle/troop/TroopRewards.js
 @target MZ
 @author ポテトードラゴン
 
 ・アップデート情報
+* Ver1.0.1: リファクタリング
 * Ver1.0.0: 初期版完成
 
 Copyright (c) 2026 ポテトードラゴン
@@ -34,37 +35,16 @@ https://opensource.org/license/mit
 (() => {
    'use strict';
 
-    // ベースプラグインの処理
-    function Potadra_isPlugin(plugin_name) {
-        return PluginManager._scripts.includes(plugin_name);
-    }
-    function PotadraExp_total() {
-        let exp = $gameTroop.deadMembers().reduce((r, enemy) => r + enemy.exp(), 0);
-        const TroopRewards = Potadra_isPlugin('TroopRewards');
-        if (TroopRewards) {
-            const exp_match = $gameTroop.troop().name.match(/<exp:\s*(\d+)>/i);
-            if (exp_match) exp += Number(exp_match[1]);
-        }
-        return exp;
-    }
-    function PotadraGold_total() {
-        const members = $gameTroop.deadMembers();
-        let gold = members.reduce((r, enemy) => r + enemy.gold(), 0) * $gameTroop.goldRate();
-        const TroopRewards = Potadra_isPlugin('TroopRewards');
-        if (TroopRewards) {
-            const gold_match = $gameTroop.troop().name.match(/<gold:\s*(\d+)>/i);
-            if (gold_match) gold += Number(gold_match[1]);
-        }
-        return gold;
-    }
-
    /**
     * 経験値の合計計算
     *
     * @returns {number} 経験値
     */
    Game_Troop.prototype.expTotal = function() {
-      return PotadraExp_total();
+      let exp = $gameTroop.deadMembers().reduce((r, enemy) => r + enemy.exp(), 0);
+      const exp_match = $gameTroop.troop().name.match(/<exp:\s*(\d+)>/i);
+      if (exp_match) exp += Number(exp_match[1]);
+      return exp;
    };
 
    /**
@@ -73,6 +53,10 @@ https://opensource.org/license/mit
     * @returns {number} 所持金
     */
    Game_Troop.prototype.goldTotal = function() {
-      return PotadraGold_total();
+      const members = $gameTroop.deadMembers();
+      let gold = members.reduce((r, enemy) => r + enemy.gold(), 0) * $gameTroop.goldRate();
+      const gold_match = $gameTroop.troop().name.match(/<gold:\s*(\d+)>/i);
+      if (gold_match) gold += Number(gold_match[1]);
+      return gold;
    };
 })();
