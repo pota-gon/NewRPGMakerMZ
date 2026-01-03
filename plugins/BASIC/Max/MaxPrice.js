@@ -90,13 +90,6 @@ https://opensource.org/license/mit
             }
         };
     }
-    function Potadra_isSecound(switch_no) {
-        return $gameSwitches && $gameSwitches.value(switch_no) === true;
-    }
-    function Potadra_MetaPrice(item, price_meta_name, rate = 1) {
-        const meta_price = Potadra_meta(item.meta, price_meta_name);
-        return (meta_price ? Number(meta_price) : item.price) * rate;
-    }
     function Potadra_meta(meta, tag) {
         if (meta) {
             const data = meta[tag];
@@ -109,6 +102,13 @@ https://opensource.org/license/mit
             }
         }
         return false;
+    }
+    function Potadra_MetaPrice(item, price_meta_name, rate = 1) {
+        const meta_price = Potadra_meta(item.meta, price_meta_name);
+        return (meta_price ? Number(meta_price) : item.price) * rate;
+    }
+    function Potadra_isSecound(switch_no) {
+        return $gameSwitches && $gameSwitches.value(switch_no) === true;
     }
     function Potadra_isPlugin(plugin_name) {
         return PluginManager._scripts.includes(plugin_name);
