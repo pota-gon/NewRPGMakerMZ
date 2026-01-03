@@ -1,6 +1,6 @@
 /*:
 @plugindesc
-ステート名参照制御文字 Ver1.0.2(2026/1/1)
+ステート名参照制御文字 Ver1.0.2(2026/1/3)
 
 @url https://raw.githubusercontent.com/pota-gon/RPGMakerMZ/refs/heads/main/plugins/BASIC/Ex/ExState.js
 @target MZ
